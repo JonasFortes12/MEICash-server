@@ -18,5 +18,6 @@ public class UserController {
     public String getAllUsers() {
         return "Eu retorno todos os usuários!";
     }
+    erro aqui
 
 }
