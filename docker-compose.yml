@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${MEICASH_POSTGRES_DB}
+      POSTGRES_USER: ${MEICASH_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${MEICASH_POSTGRES_PASSWORD}
+    ports:
+      - "${MEICASH_POSTGRES_PORT}:5432"
+  db-test:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${MEICASH_TEST_POSTGRES_DB}
+      POSTGRES_USER: ${MEICASH_TEST_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${MEICASH_TEST_POSTGRES_PASSWORD}
+    ports:
+      - "${MEICASH_TEST_POSTGRES_PORT}:5432"
