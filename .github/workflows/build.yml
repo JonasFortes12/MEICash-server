@@ -11,6 +11,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      MEICASH_TEST_POSTGRES_PORT: 5435
+      MEICASH_TEST_POSTGRES_DB: mandacaru_broker_test
+      MEICASH_TEST_POSTGRES_USER: time_cinco_test
+      MEICASH_TEST_POSTGRES_PASSWORD: mandacaru
 
     steps:
       - name: Check out repository code
