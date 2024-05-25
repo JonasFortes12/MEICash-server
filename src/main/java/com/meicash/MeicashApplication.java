@@ -1,4 +1,4 @@
-package com.meicash.meicash;
+package com.meicash;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
