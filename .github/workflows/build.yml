@@ -17,9 +17,9 @@ jobs:
       MEICASH_POSTGRES_USER: time_cinco
       MEICASH_POSTGRES_PASSWORD: pass_time_cinco
       MEICASH_TEST_POSTGRES_PORT: 5435
-      MEICASH_TEST_POSTGRES_DB: mandacaru_broker_test
+      MEICASH_TEST_POSTGRES_DB: juazeiro_meicash_test
       MEICASH_TEST_POSTGRES_USER: time_cinco_test
-      MEICASH_TEST_POSTGRES_PASSWORD: mandacaru
+      MEICASH_TEST_POSTGRES_PASSWORD: pass_time_cinco_test
 
     steps:
       - name: Check out repository code
