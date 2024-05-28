@@ -8,6 +8,9 @@ services:
       POSTGRES_PASSWORD: ${MEICASH_POSTGRES_PASSWORD}
     ports:
       - "${MEICASH_POSTGRES_PORT}:5432"
+    networks:
+      - meicash_network
+
   db-test:
     image: postgres
     restart: always
@@ -17,3 +20,18 @@ services:
       POSTGRES_PASSWORD: ${MEICASH_TEST_POSTGRES_PASSWORD}
     ports:
       - "${MEICASH_TEST_POSTGRES_PORT}:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - meicash_network
+
+networks:
+  meicash_network:
+    driver: bridge
