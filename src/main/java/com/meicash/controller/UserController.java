@@ -1,8 +1,11 @@
 package com.meicash.controller;
+import com.meicash.domain.user.ResponseUserDTO;
 import com.meicash.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -15,8 +18,8 @@ public class UserController {
     }
 
     @GetMapping()
-    public String getAllUsers() {
-        return "Eu retorno todos os usuários!";
+    public List<ResponseUserDTO> getAllUsers() {
+        return userService.getAllUsers();
     }
 
 }
