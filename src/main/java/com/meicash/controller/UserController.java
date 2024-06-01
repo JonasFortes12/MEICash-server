@@ -39,4 +39,14 @@ public class UserController {
         ResponseUserDTO createdUser = userService.createUser(requestUserDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<ResponseUserDTO> updateUser(@PathVariable final String userId, @RequestBody @Valid final RequestUserDTO requestUserDTO) {
+        Optional<ResponseUserDTO> updatedUser = userService.updateUser(userId, requestUserDTO);
+        if (updatedUser.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedUser.get());
+    }
+
 }

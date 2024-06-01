@@ -53,4 +53,18 @@ public class UserService {
         }
         return Optional.of(userToResponseUserDTO(retrievedUser.get()));
     }
+
+    public Optional<ResponseUserDTO> updateUser(String userId, RequestUserDTO requestUserDTO) {
+
+        return userRepository.findById(userId)
+                .map(user -> {
+                    user.setEmail(requestUserDTO.email());
+                    user.setUsername(requestUserDTO.username());
+                    user.setPassword(requestUserDTO.password());
+                    user.setFirstName(requestUserDTO.firstName());
+                    user.setLastName(requestUserDTO.lastName());
+                    user.setCompanyName(requestUserDTO.companyName());
+                    return userToResponseUserDTO(userRepository.save(user));
+                });
+    }
 }
