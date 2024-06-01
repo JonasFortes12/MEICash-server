@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -49,4 +50,11 @@ public class UserController {
         return ResponseEntity.ok(updatedUser.get());
     }
 
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Object> deleteUser(@PathVariable final String userId) {
+        if (userService.deleteUser(userId)) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

@@ -67,4 +67,12 @@ public class UserService {
                     return userToResponseUserDTO(userRepository.save(user));
                 });
     }
+
+    public boolean deleteUser(final String userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
 }
