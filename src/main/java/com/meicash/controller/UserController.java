@@ -1,9 +1,11 @@
 package com.meicash.controller;
+import com.meicash.domain.user.RequestUserDTO;
 import com.meicash.domain.user.ResponseUserDTO;
 import com.meicash.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +24,9 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @PostMapping()
+    public ResponseEntity<ResponseUserDTO> createUser(@RequestBody @Valid final RequestUserDTO requestUserDTO) {
+        ResponseUserDTO createdUser = userService.createUser(requestUserDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
 }

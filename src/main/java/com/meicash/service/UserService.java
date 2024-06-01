@@ -1,6 +1,7 @@
 package com.meicash.service;
 
 
+import com.meicash.domain.user.RequestUserDTO;
 import com.meicash.domain.user.ResponseUserDTO;
 import com.meicash.domain.user.User;
 import com.meicash.domain.user.UserRepository;
@@ -39,4 +40,8 @@ public class UserService {
     }
 
 
+    public ResponseUserDTO createUser(final RequestUserDTO requestUserDTO) {
+        User newUser = new User(requestUserDTO);
+        return userToResponseUserDTO(userRepository.save(newUser));
+    }
 }

@@ -26,4 +26,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String companyName;
+
+    public User(final RequestUserDTO requestUserDTO) {
+        this.email = requestUserDTO.email();
+        this.username = requestUserDTO.username();
+        this.password = requestUserDTO.password();
+        this.firstName = requestUserDTO.firstName();
+        this.lastName = requestUserDTO.lastName();
+        this.companyName = requestUserDTO.companyName();
+    }
 }
