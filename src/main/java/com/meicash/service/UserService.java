@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -43,5 +44,13 @@ public class UserService {
     public ResponseUserDTO createUser(final RequestUserDTO requestUserDTO) {
         User newUser = new User(requestUserDTO);
         return userToResponseUserDTO(userRepository.save(newUser));
+    }
+
+    public Optional<ResponseUserDTO> getUserById(final String userId) {
+        Optional<User> retrievedUser = userRepository.findById(userId);
+        if (retrievedUser.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(userToResponseUserDTO(retrievedUser.get()));
     }
 }
