@@ -15,7 +15,7 @@
     MEICASH_POSTGRES_DB=juazeiro_meicash
     MEICASH_POSTGRES_USER=time_cinco
     MEICASH_POSTGRES_PASSWORD=pass_time_cinco
-
+    
     # Change value to "never" for production environment
     MEICASH_SQL_INIT_MODE=always
     MEICASH_API_PORT=8080
@@ -24,9 +24,10 @@
     # Integration test environment
     MEICASH_TEST_POSTGRES_HOST=127.0.0.1
     MEICASH_TEST_POSTGRES_PORT=5435
-    MEICASH_TEST_POSTGRES_DB=mandacaru_broker_test
+    MEICASH_TEST_POSTGRES_DB=juazeiro_meicash_test
     MEICASH_TEST_POSTGRES_USER=time_cinco_test
-    MEICASH_TEST_POSTGRES_PASSWORD=mandacaru
+    MEICASH_TEST_POSTGRES_PASSWORD=pass_time_cinco_test
+
     ```
 - Acesse, na barra superior da IDE `Run -> Edit Configuration`. 
 Selecione `MEICashApplication` e clique no botão `Alt + E` para adicionar a configuração 
