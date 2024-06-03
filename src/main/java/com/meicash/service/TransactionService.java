@@ -6,6 +6,9 @@ import com.meicash.domain.transaction.Transaction;
 import com.meicash.domain.transaction.TransactionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TransactionService {
 
@@ -27,5 +30,18 @@ public class TransactionService {
                 newTransaction.getValue(),
                 newTransaction.getDescription()
         );
+    }
+
+    public List<ResponseTransactionDTO> getAllTransactions() {
+        List<Transaction> transactions = transactionRepository.findAll();
+
+        return transactions.stream()
+                .map(transaction -> new ResponseTransactionDTO(
+                        transaction.getTimestamp(),
+                        transaction.getType(),
+                        transaction.getCategory(),
+                        transaction.getValue(),
+                        transaction.getDescription()))
+                .collect(Collectors.toList());
     }
 }
