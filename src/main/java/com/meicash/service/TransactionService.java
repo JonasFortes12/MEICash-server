@@ -7,6 +7,7 @@ import com.meicash.domain.transaction.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,5 +44,22 @@ public class TransactionService {
                         transaction.getValue(),
                         transaction.getDescription()))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<ResponseTransactionDTO> getTransactionById(String transactionId) {
+        Optional<Transaction> transaction = transactionRepository.findById(transactionId);
+        if (transaction.isPresent()) {
+            Transaction foundTransaction = transaction.get();
+            ResponseTransactionDTO responseTransactionDTO = new ResponseTransactionDTO(
+                    foundTransaction.getTimestamp(),
+                    foundTransaction.getType(),
+                    foundTransaction.getCategory(),
+                    foundTransaction.getValue(),
+                    foundTransaction.getDescription()
+            );
+            return Optional.of(responseTransactionDTO);
+        } else {
+            return Optional.empty();
+        }
     }
 }

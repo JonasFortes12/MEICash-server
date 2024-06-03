@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/transactions")
@@ -28,5 +29,11 @@ public class TransactionController {
     @GetMapping()
     public List<ResponseTransactionDTO> getAllTransactions() {
         return transactionService.getAllTransactions();
+    }
+
+    @GetMapping("/{transactionId}")
+    public ResponseEntity<ResponseTransactionDTO> getTransactionById(@PathVariable String transactionId) {
+        Optional<ResponseTransactionDTO> transaction = transactionService.getTransactionById(transactionId);
+        return transaction.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
