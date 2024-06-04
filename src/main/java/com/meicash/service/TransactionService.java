@@ -19,45 +19,34 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
+    private ResponseTransactionDTO transactionToResponseTransactionDTO(Transaction transaction) {
+        return new ResponseTransactionDTO(
+                transaction.getId(),
+                transaction.getTimestamp(),
+                transaction.getType(),
+                transaction.getCategory(),
+                transaction.getValue(),
+                transaction.getDescription()
+        );
+    }
+
     public ResponseTransactionDTO createTransaction(RequestTransactionDTO requestTransactionDTO) {
         Transaction newTransaction = new Transaction(requestTransactionDTO);
-
-        transactionRepository.save(newTransaction);
-
-        return new ResponseTransactionDTO(
-                newTransaction.getTimestamp(),
-                newTransaction.getType(),
-                newTransaction.getCategory(),
-                newTransaction.getValue(),
-                newTransaction.getDescription()
-        );
+        return transactionToResponseTransactionDTO(transactionRepository.save(newTransaction));
     }
 
     public List<ResponseTransactionDTO> getAllTransactions() {
         List<Transaction> transactions = transactionRepository.findAll();
 
         return transactions.stream()
-                .map(transaction -> new ResponseTransactionDTO(
-                        transaction.getTimestamp(),
-                        transaction.getType(),
-                        transaction.getCategory(),
-                        transaction.getValue(),
-                        transaction.getDescription()))
+                .map(transaction -> transactionToResponseTransactionDTO(transaction))
                 .collect(Collectors.toList());
     }
 
     public Optional<ResponseTransactionDTO> getTransactionById(String transactionId) {
         Optional<Transaction> transaction = transactionRepository.findById(transactionId);
         if (transaction.isPresent()) {
-            Transaction foundTransaction = transaction.get();
-            ResponseTransactionDTO responseTransactionDTO = new ResponseTransactionDTO(
-                    foundTransaction.getTimestamp(),
-                    foundTransaction.getType(),
-                    foundTransaction.getCategory(),
-                    foundTransaction.getValue(),
-                    foundTransaction.getDescription()
-            );
-            return Optional.of(responseTransactionDTO);
+            return Optional.of(transactionToResponseTransactionDTO(transaction.get()));
         } else {
             return Optional.empty();
         }
