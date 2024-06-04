@@ -51,4 +51,26 @@ public class TransactionService {
             return Optional.empty();
         }
     }
+
+    public Optional<ResponseTransactionDTO> updateTransaction(String transactionId, RequestTransactionDTO requestTransactionDTO) {
+        return transactionRepository.findById(transactionId).map(
+                transaction -> {
+                    transaction.setTimestamp(requestTransactionDTO.timestamp());
+                    transaction.setType(requestTransactionDTO.type());
+                    transaction.setCategory(requestTransactionDTO.category());
+                    transaction.setValue(requestTransactionDTO.value());
+                    transaction.setDescription(requestTransactionDTO.description());
+                    return transactionToResponseTransactionDTO(transactionRepository.save(transaction));
+                }
+        );
+    }
+
+    public boolean deleteTransaction(String transactionId) {
+        return transactionRepository.findById(transactionId)
+                .map(transaction -> {
+                    transactionRepository.delete(transaction);
+                    return true;
+                })
+                .orElse(false);
+    }
 }
