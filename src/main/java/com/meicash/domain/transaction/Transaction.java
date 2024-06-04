@@ -25,4 +25,11 @@ public class Transaction {
     private double value;
     private String description;
 
+    public Transaction(RequestTransactionDTO requestTransactionDTO) {
+        this.timestamp = requestTransactionDTO.timestamp();
+        this.type = requestTransactionDTO.type();
+        this.category = requestTransactionDTO.category();
+        this.value = requestTransactionDTO.value();
+        this.description = requestTransactionDTO.description();
+    }
 }
