@@ -36,4 +36,23 @@ public class TransactionController {
         Optional<ResponseTransactionDTO> transaction = transactionService.getTransactionById(transactionId);
         return transaction.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{transactionId}")
+    public ResponseEntity<ResponseTransactionDTO> updateTransaction(@PathVariable String transactionId, @RequestBody @Valid RequestTransactionDTO requestTransactionDTO) {
+        Optional<ResponseTransactionDTO> updatedTransaction = transactionService.updateTransaction(transactionId, requestTransactionDTO);
+        if (updatedTransaction.isPresent()) {
+            return ResponseEntity.ok(updatedTransaction.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{transactionId}")
+    public ResponseEntity<Void> deleteTransaction(@PathVariable String transactionId) {
+        return transactionService.deleteTransaction(transactionId)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
+    }
+
+
 }
