@@ -27,7 +27,6 @@ jobs:
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/meicash-app .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/meicash-app
 
-
   deploy-production:
      name: Deploy production environment to Azure VM
      runs-on: ubuntu-latest
