@@ -24,8 +24,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/meicash-api .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/meicash-api
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/meicash-app .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/meicash-app
 
 
   deploy-production:
