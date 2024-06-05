@@ -34,4 +34,7 @@ build/
 
 ### Environments ###
 .env
+
+### secrets ###
 shhkey-time05.pem
+little-runs.txt
