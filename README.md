@@ -10,7 +10,7 @@
 - Abra o projeto usando o IntelliJ IDEA.
 - Na raíz do projeto, crie um arquivo chamado `.env` e adicione as variáveis de ambiente disponíveis no arquivo `.env.example`.
     ```dotenv
-    MEICASH_POSTGRES_HOST=host.docker.internal
+    MEICASH_POSTGRES_HOST=localhost
     MEICASH_POSTGRES_PORT=5432
     MEICASH_POSTGRES_DB=juazeiro_meicash
     MEICASH_POSTGRES_USER=time_cinco
