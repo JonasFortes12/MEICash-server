@@ -23,4 +23,9 @@ public class Category {
     private String name;
     private String description;
 
+    public Category(RequestCategoryDTO requestCategoryDTO){
+        this.name = requestCategoryDTO.name();
+        this.description = requestCategoryDTO.description();
+    }
+
 }
