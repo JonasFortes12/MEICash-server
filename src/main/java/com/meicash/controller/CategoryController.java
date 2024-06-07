@@ -4,6 +4,7 @@ import com.meicash.domain.category.RequestCategoryDTO;
 import com.meicash.domain.category.ResponseCategoryDTO;
 import com.meicash.service.CategoryService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -38,4 +39,22 @@ public class CategoryController {
         Optional<ResponseCategoryDTO> category = categoryService.getCategoryById(categoryId);
         return category.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{categoryId}")
+    public ResponseEntity<ResponseCategoryDTO> updateCategory(@PathVariable String categoryId, @RequestBody @Valid RequestCategoryDTO requestCategoryDTO) {
+        Optional<ResponseCategoryDTO> updatedCategory = categoryService.updateCategory(categoryId, requestCategoryDTO);
+        if (updatedCategory.isPresent()) {
+            return ResponseEntity.ok(updatedCategory.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable String categoryId) {
+        return categoryService.deleteCategory(categoryId)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
+    }
+
 }

@@ -47,4 +47,24 @@ public class CategoryService {
         }
     }
 
+    public Optional<ResponseCategoryDTO> updateCategory(String categoryId, RequestCategoryDTO requestCategoryDTO) {
+        return categoryRepository.findById(categoryId).map(
+                category -> {
+                    category.setName(requestCategoryDTO.name());
+                    category.setDescription(requestCategoryDTO.description());
+                    return categoryToResponseCategoryDTO(categoryRepository.save(category));
+                }
+        );
+    }
+
+    public boolean deleteCategory(String categoryId) {
+        return categoryRepository.findById(categoryId)
+                .map(category -> {
+                    categoryRepository.delete(category);
+                    return true;
+                })
+                .orElse(false);
+    }
+
+
 }
