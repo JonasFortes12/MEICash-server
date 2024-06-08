@@ -1,5 +1,7 @@
 package com.meicash.domain.transaction;
 
+import com.meicash.domain.category.Category;
+import com.meicash.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,9 +23,14 @@ public class Transaction {
     private LocalDateTime timestamp;
     @Enumerated(EnumType.STRING)
     private TransactionType type;
-    private String category; //It will be a separate entity in the future
+    //private String category; //It will be a separate entity in the future
+    @ManyToOne
+    private Category category;
     private double value;
     private String description;
+    @ManyToOne
+    private User user;
+
 
     public Transaction(RequestTransactionDTO requestTransactionDTO) {
         this.timestamp = requestTransactionDTO.timestamp();

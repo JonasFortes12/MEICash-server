@@ -1,17 +1,16 @@
 package com.meicash.domain.category;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.meicash.domain.transaction.Transaction;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Table(name = "Categories")
-@Entity(name = "Categories")
+import java.util.List;
+
+@Table(name = "categories")
+@Entity(name = "categories")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,5 +21,8 @@ public class Category {
     private String id;
     private String name;
     private String description;
+    @OneToMany
+    private List<Transaction> transactions;
+
 
 }

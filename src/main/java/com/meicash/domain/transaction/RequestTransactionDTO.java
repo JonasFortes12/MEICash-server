@@ -2,6 +2,7 @@ package com.meicash.domain.transaction;
 
 
 
+import com.meicash.domain.category.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -14,7 +15,7 @@ public record RequestTransactionDTO(
         @NotNull(message = "Transaction type is required")
         TransactionType type,
         @NotBlank(message = "Category is required")
-        String category,
+        Category category,
         @NotNull(message = "Value is required")
         @PositiveOrZero(message = "Value must be positive or zero")
         double value,
