@@ -25,4 +25,9 @@ public class Category {
     private List<Transaction> transactions;
 
 
+    public Category(RequestCategoryDTO requestCategoryDTO){
+        this.name = requestCategoryDTO.name();
+        this.description = requestCategoryDTO.description();
+    }
+
 }
