@@ -24,14 +24,21 @@ public class SecurityConfigurations {
         this.securityFilter = securityFilter;
     }
 
+    private static final String[] WHITE_LIST_URL = {
+            "/",
+            "/auth/login",
+            "/auth/register",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(WHITE_LIST_URL).permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(this.securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
