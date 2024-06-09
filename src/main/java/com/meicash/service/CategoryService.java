@@ -22,7 +22,7 @@ public class CategoryService {
         return new ResponseCategoryDTO(
                 category.getId(),
                 category.getName(),
-                category.getDescription()
+                category.getColor()
         );
     }
 
@@ -51,7 +51,7 @@ public class CategoryService {
         return categoryRepository.findById(categoryId).map(
                 category -> {
                     category.setName(requestCategoryDTO.name());
-                    category.setDescription(requestCategoryDTO.description());
+                    category.setColor(requestCategoryDTO.color());
                     return categoryToResponseCategoryDTO(categoryRepository.save(category));
                 }
         );

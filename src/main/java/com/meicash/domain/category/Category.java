@@ -29,7 +29,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String name;
-    private String description;
+    private String color;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transaction> transactions;
@@ -40,7 +40,7 @@ public class Category {
 
     public Category(RequestCategoryDTO requestCategoryDTO){
         this.name = requestCategoryDTO.name();
-        this.description = requestCategoryDTO.description();
+        this.color = requestCategoryDTO.color();
     }
 
 }
