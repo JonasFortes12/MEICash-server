@@ -23,13 +23,16 @@ public class Transaction {
     private LocalDateTime timestamp;
     @Enumerated(EnumType.STRING)
     private TransactionType type;
-    //private String category; //It will be a separate entity in the future
-    @ManyToOne
-    private Category category;
     private double value;
     private String description;
+
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
 
 
     public Transaction(RequestTransactionDTO requestTransactionDTO) {

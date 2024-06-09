@@ -1,9 +1,8 @@
 package com.meicash.domain.user;
 
+import com.meicash.domain.category.Category;
 import com.meicash.domain.transaction.Transaction;
-import com.meicash.domain.usertransaction.UserTransaction;
 import jakarta.persistence.*;
-import com.meicash.domain.auth.RequestUserRegisterDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-import java.util.List;
 
 @Table(name = "users")
 @Entity(name = "users")
@@ -38,8 +36,11 @@ public class User implements UserDetails {
     private String firstName;
     private String lastName;
     private String companyName;
-    @OneToMany
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transaction> transactions;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Category> categories;
 
 
     public User(final RequestUserDTO requestUserDTO) {
