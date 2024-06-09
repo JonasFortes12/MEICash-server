@@ -5,5 +5,5 @@ CREATE TABLE users (
                        password VARCHAR NOT NULL,
                        first_name VARCHAR NOT NULL,
                        last_name VARCHAR,
-                       company_name VARCHAR
+                       company_name VARCHAR,
 );

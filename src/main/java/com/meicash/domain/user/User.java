@@ -1,7 +1,7 @@
 package com.meicash.domain.user;
 
+import com.meicash.domain.category.Category;
 import com.meicash.domain.transaction.Transaction;
-import com.meicash.domain.usertransaction.UserTransaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +26,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String companyName;
-    @OneToMany
-    private List<Transaction> transactions;
 
     public User(final RequestUserDTO requestUserDTO) {
         this.email = requestUserDTO.email();

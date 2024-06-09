@@ -1,6 +1,7 @@
 package com.meicash.domain.category;
 
 import com.meicash.domain.transaction.Transaction;
+import com.meicash.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +22,8 @@ public class Category {
     private String id;
     private String name;
     private String description;
-    @OneToMany
-    private List<Transaction> transactions;
-
+    @OneToOne
+    @JoinColumn(name = "id_transaction", nullable = false)
+    private Transaction transaction;
 
 }

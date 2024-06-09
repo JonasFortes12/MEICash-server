@@ -25,10 +25,12 @@ public class Transaction {
     private TransactionType type;
     //private String category; //It will be a separate entity in the future
     @ManyToOne
+    @JoinColumn(name = "id_category", nullable = false)
     private Category category;
     private double value;
     private String description;
     @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
 
