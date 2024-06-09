@@ -23,7 +23,6 @@ public class Transaction {
     private LocalDateTime timestamp;
     @Enumerated(EnumType.STRING)
     private TransactionType type;
-    //private String category; //It will be a separate entity in the future
     @ManyToOne
     @JoinColumn(name = "id_category", nullable = false)
     private Category category;
