@@ -1,5 +1,7 @@
 package com.meicash.domain.transaction;
 
+import com.meicash.domain.category.Category;
+
 import java.time.LocalDateTime;
 
 public record ResponseTransactionDTO(
@@ -7,7 +9,7 @@ public record ResponseTransactionDTO(
     String id,
     LocalDateTime timestamp,
     TransactionType type,
-    String category,
+    Category category,
     double value,
     String description
 ) {
