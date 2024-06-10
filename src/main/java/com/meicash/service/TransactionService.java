@@ -1,5 +1,6 @@
 package com.meicash.service;
 
+import com.meicash.domain.category.Category;
 import com.meicash.domain.transaction.RequestTransactionDTO;
 import com.meicash.domain.transaction.ResponseTransactionDTO;
 import com.meicash.domain.transaction.Transaction;
@@ -24,14 +25,15 @@ public class TransactionService {
                 transaction.getId(),
                 transaction.getTimestamp(),
                 transaction.getType(),
-                transaction.getCategory(),
+                transaction.getCategory().getName(),
+                transaction.getCategory().getColor(),
                 transaction.getValue(),
                 transaction.getDescription()
         );
     }
 
-    public ResponseTransactionDTO createTransaction(RequestTransactionDTO requestTransactionDTO) {
-        Transaction newTransaction = new Transaction(requestTransactionDTO);
+    public ResponseTransactionDTO createTransaction(RequestTransactionDTO requestTransactionDTO, Category category) {
+        Transaction newTransaction = new Transaction(requestTransactionDTO, category);
         return transactionToResponseTransactionDTO(transactionRepository.save(newTransaction));
     }
 
@@ -57,7 +59,6 @@ public class TransactionService {
                 transaction -> {
                     transaction.setTimestamp(requestTransactionDTO.timestamp());
                     transaction.setType(requestTransactionDTO.type());
-                    transaction.setCategory(requestTransactionDTO.category());
                     transaction.setValue(requestTransactionDTO.value());
                     transaction.setDescription(requestTransactionDTO.description());
                     return transactionToResponseTransactionDTO(transactionRepository.save(transaction));

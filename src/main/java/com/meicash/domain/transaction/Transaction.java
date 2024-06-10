@@ -35,10 +35,11 @@ public class Transaction {
 
 
 
-    public Transaction(RequestTransactionDTO requestTransactionDTO) {
+
+    public Transaction(RequestTransactionDTO requestTransactionDTO, Category category) {
         this.timestamp = requestTransactionDTO.timestamp();
         this.type = requestTransactionDTO.type();
-        this.category = requestTransactionDTO.category();
+        this.category = category;
         this.value = requestTransactionDTO.value();
         this.description = requestTransactionDTO.description();
     }
