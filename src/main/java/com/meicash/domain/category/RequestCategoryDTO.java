@@ -6,8 +6,8 @@ public record RequestCategoryDTO(
 
         @NotBlank(message = "Name is required")
         String name,
-        @NotBlank(message = "Description is required")
-        String description
+        @NotBlank(message = "Color is required")
+        String color
 ) {
 
 }

@@ -13,21 +13,24 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final AuthorizationService authorizationService;
 
-    public CategoryService(CategoryRepository categoryRepository){
+    public CategoryService(CategoryRepository categoryRepository, AuthorizationService authorizationService) {
         this.categoryRepository = categoryRepository;
+        this.authorizationService = authorizationService;
     }
 
     private ResponseCategoryDTO categoryToResponseCategoryDTO(Category category){
         return new ResponseCategoryDTO(
                 category.getId(),
                 category.getName(),
-                category.getDescription()
+                category.getColor()
         );
     }
 
     public ResponseCategoryDTO createCategory(RequestCategoryDTO requestCategoryDTO) {
         Category newCategory = new Category(requestCategoryDTO);
+        newCategory.setUser(authorizationService.getAuthenticatedUser());
         return categoryToResponseCategoryDTO(categoryRepository.save(newCategory));
     }
 
@@ -51,7 +54,7 @@ public class CategoryService {
         return categoryRepository.findById(categoryId).map(
                 category -> {
                     category.setName(requestCategoryDTO.name());
-                    category.setDescription(requestCategoryDTO.description());
+                    category.setColor(requestCategoryDTO.color());
                     return categoryToResponseCategoryDTO(categoryRepository.save(category));
                 }
         );
