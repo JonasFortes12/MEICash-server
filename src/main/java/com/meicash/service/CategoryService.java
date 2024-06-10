@@ -13,9 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final AuthorizationService authorizationService;
 
-    public CategoryService(CategoryRepository categoryRepository){
+    public CategoryService(CategoryRepository categoryRepository, AuthorizationService authorizationService) {
         this.categoryRepository = categoryRepository;
+        this.authorizationService = authorizationService;
     }
 
     private ResponseCategoryDTO categoryToResponseCategoryDTO(Category category){
@@ -28,6 +30,7 @@ public class CategoryService {
 
     public ResponseCategoryDTO createCategory(RequestCategoryDTO requestCategoryDTO) {
         Category newCategory = new Category(requestCategoryDTO);
+        newCategory.setUser(authorizationService.getAuthenticatedUser());
         return categoryToResponseCategoryDTO(categoryRepository.save(newCategory));
     }
 
