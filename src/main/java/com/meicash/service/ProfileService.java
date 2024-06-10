@@ -7,6 +7,9 @@ import com.meicash.domain.transaction.Transaction;
 import com.meicash.domain.transaction.TransactionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProfileService {
     private final TransactionRepository transactionRepository;
@@ -35,5 +38,12 @@ public class ProfileService {
         newTransaction.setUser(authorizationService.getAuthenticatedUser());
 
         return transactionToResponseTransactionDTO(transactionRepository.save(newTransaction));
+    }
+
+    public List<ResponseTransactionDTO> getUserTransactions() {
+        return transactionRepository.findAllByUser(authorizationService.getAuthenticatedUser())
+                .stream()
+                .map(this::transactionToResponseTransactionDTO)
+                .collect(Collectors.toList());
     }
 }

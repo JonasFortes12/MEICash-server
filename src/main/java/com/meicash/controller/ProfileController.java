@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Tag(name = "Perfil de Usuário" , description = "Operações relacionadas às ações do usuário no sistema")
@@ -52,6 +53,15 @@ public class ProfileController {
                 transactionCategory.get()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(newTransaction);
+    }
+
+    @Operation(summary = "O usuário recupera todas as suas transações", description = "Recupera todas as transações do usuário no usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Transações do usuário recuperadas com sucesso"),
+    })
+    @GetMapping("/transactions")
+    public List<ResponseTransactionDTO> getUserTransactions() {
+        return profileService.getUserTransactions();
     }
 
 
