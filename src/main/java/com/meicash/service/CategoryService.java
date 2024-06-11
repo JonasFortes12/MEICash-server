@@ -50,6 +50,15 @@ public class CategoryService {
         }
     }
 
+    public Optional<Category> getEntityCategoryById(String categoryId) {
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if (category.isPresent()) {
+            return Optional.of(category.get());
+        } else {
+            return Optional.empty();
+        }
+    }
+
     public Optional<ResponseCategoryDTO> updateCategory(String categoryId, RequestCategoryDTO requestCategoryDTO) {
         return categoryRepository.findById(categoryId).map(
                 category -> {

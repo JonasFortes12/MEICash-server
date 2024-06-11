@@ -14,8 +14,6 @@ public record RequestTransactionDTO(
         LocalDateTime timestamp,
         @NotNull(message = "Transaction type is required")
         TransactionType type,
-        @NotBlank(message = "Category is required")
-        Category category,
         @NotNull(message = "Value is required")
         @PositiveOrZero(message = "Value must be positive or zero")
         double value,

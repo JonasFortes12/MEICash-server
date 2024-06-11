@@ -1,7 +1,9 @@
 package com.meicash.controller;
 
+import com.meicash.domain.category.Category;
 import com.meicash.domain.transaction.RequestTransactionDTO;
 import com.meicash.domain.transaction.ResponseTransactionDTO;
+import com.meicash.service.CategoryService;
 import com.meicash.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,20 +22,35 @@ import java.util.Optional;
 @RequestMapping("/transactions")
 public class TransactionController {
     private final TransactionService transactionService;
+    private final CategoryService categoryService;
 
-    public TransactionController(TransactionService transactionService) {
+    public TransactionController(TransactionService transactionService, CategoryService categoryService) {
         this.transactionService = transactionService;
+        this.categoryService = categoryService;
     }
 
     @Operation(summary = "Cria uma transação", description = "Cria uma nova transação no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Transação criada"),
             @ApiResponse(responseCode = "403", description = "Erro na requisição ou Usuário não autorizado"),
+            @ApiResponse(responseCode = "400", description = "Categoria não encontrada ou erro na requisição")
     })
-    @PostMapping()
-    public ResponseEntity<ResponseTransactionDTO> createTransaction(@RequestBody @Valid RequestTransactionDTO requestTransactionDTO) {
-        ResponseTransactionDTO createdTransaction = transactionService.createTransaction(requestTransactionDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdTransaction);
+    @PostMapping("/{categoryId}")
+    public ResponseEntity<ResponseTransactionDTO> createTransaction(
+            @RequestBody @Valid RequestTransactionDTO requestTransactionDTO,
+            @PathVariable final String categoryId
+    ) {
+        Optional<Category> transactionCategory = categoryService.getEntityCategoryById(categoryId);
+
+        if(transactionCategory.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        ResponseTransactionDTO newTransaction =  transactionService.createTransaction(
+                requestTransactionDTO,
+                transactionCategory.get()
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(newTransaction);
     }
 
     @Operation(summary = "Lista todas as transações", description = "Retorna todas as transações cadastradas no sistema")
