@@ -10,6 +10,8 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
 public record RequestTransactionDTO(
+        @NotNull(message = "Title is required")
+        String title,
         @NotNull(message = "Timestamp is required")
         LocalDateTime timestamp,
         @NotNull(message = "Transaction type is required")

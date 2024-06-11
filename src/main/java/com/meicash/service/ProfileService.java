@@ -42,6 +42,7 @@ public class ProfileService {
     private ResponseTransactionDTO transactionToResponseTransactionDTO(Transaction transaction) {
         return new ResponseTransactionDTO(
                 transaction.getId(),
+                transaction.getTitle(),
                 transaction.getTimestamp(),
                 transaction.getType(),
                 transaction.getCategory().getName(),
