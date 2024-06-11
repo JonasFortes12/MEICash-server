@@ -1,6 +1,8 @@
 package com.meicash.controller;
 
 import com.meicash.domain.category.Category;
+import com.meicash.domain.category.RequestCategoryDTO;
+import com.meicash.domain.category.ResponseCategoryDTO;
 import com.meicash.domain.transaction.RequestTransactionDTO;
 import com.meicash.domain.transaction.ResponseTransactionDTO;
 import com.meicash.service.CategoryService;
@@ -64,6 +66,27 @@ public class ProfileController {
         return profileService.getUserTransactions();
     }
 
+    @Operation(summary = "O usuário registra uma nova categoria", description = "Cria uma nova categoria no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Usuário criou categoria com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição")
+    })
+    @PostMapping("/categories")
+    public ResponseEntity<ResponseCategoryDTO> userCreateCategory(
+            @Valid @RequestBody final RequestCategoryDTO requestCategoryDTO
+    ){
+        ResponseCategoryDTO newCategory = profileService.userCreateCategory(requestCategoryDTO);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body(newCategory);
+    }
+
+    @Operation(summary = "O usuário recupera todas as suas categorias", description = "Recupera todas as categorias do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Categorias do usuário recuperadas com sucesso"),
+    })
+    @GetMapping("/categories")
+    public List<ResponseCategoryDTO> getUserCategories() {
+        return profileService.getUserCategories();
+    }
 
 }
