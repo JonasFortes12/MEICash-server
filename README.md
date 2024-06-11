@@ -1,44 +1,19 @@
 # MEICash-server
 
 
-### Preparando o ambiente de desenvolvimento:
+## Sobre o projeto:
+O MEICash é um sistema de apoio à organização financeira de Micro Empreendedores Individuais (MEIs).
 
-- Clone este repositório.
-    ```bash
-    git clone https://github.com/JonasFortes12/MEICash-server.git
-    ```
-- Abra o projeto usando o IntelliJ IDEA.
-- Na raíz do projeto, crie um arquivo chamado `.env` e adicione as variáveis de ambiente disponíveis no arquivo `.env.example`.
-    ```dotenv
-    MEICASH_POSTGRES_HOST=localhost
-    MEICASH_POSTGRES_PORT=5432
-    MEICASH_POSTGRES_DB=juazeiro_meicash
-    MEICASH_POSTGRES_USER=time_cinco
-    MEICASH_POSTGRES_PASSWORD=pass_time_cinco
-    
-    # Change value to "never" for production environment
-    MEICASH_SQL_INIT_MODE=always
-    MEICASH_API_PORT=8080
-    MEICASH_JWT_SECRET=mandacaru-jwt-secret
-    
-    # Integration test environment
-    MEICASH_TEST_POSTGRES_HOST=127.0.0.1
-    MEICASH_TEST_POSTGRES_PORT=5435
-    MEICASH_TEST_POSTGRES_DB=juazeiro_meicash_test
-    MEICASH_TEST_POSTGRES_USER=time_cinco_test
-    MEICASH_TEST_POSTGRES_PASSWORD=pass_time_cinco_test
+O planejamento deste projeto foi realizado em três etapas principais:
 
-    ```
-- Acesse, na barra superior da IDE `Run -> Edit Configuration`. 
-Selecione `MEICashApplication` e clique no botão `Alt + E` para adicionar a configuração 
-de variáveis de ambiente. Adicione as variáveis de ambiente disponíveis no arquivo `.env` criado. 
+ 1. Pesquisa de mercado para identificar as principais soluções no segmento.
+ 3. Elaboração de épicos/iniciativas para descrever as principais demandas de potenciais clientes.
+ 4. Consulta a microempreendedores para entender suas reais necessidades e priorizar a lista de funcionalidades identificadas.
 
-  <img src="./tutorials-assets/setenv.png" width="70%">
+Com este planejamento, nossa equipe percebeu que uma das funcionalidades mais úteis e prioritárias para os MEIs é a capacidade de organizar suas transações de forma simples, facilitando a busca e cálculos importantes para o negócio. Dessa forma, a implementação deste MVP oferece aos usuários a possibilidade de cadastrar e fazer login no sistema, registrar suas transações de maneira simples e criar categorias personalizadas para cada transação, facilitando a visualização e a busca por essas informações.
 
-- Execute o banco de dados PostgreSQL usando Docker. Use o seguinte comando na raíz do projeto:
-    ```bash
-    docker-compose up -d
-    ```
-- Execute a aplicação Spring Boot. Click no botão de Play na parte superior direita da IDE.
-- Você deve ser capaz de acessar o seguinte endereço: `http://localhost:8080/users` 
-e ver a mensagem: `Eu retorno todos os usuários!`.
+Esta é uma aplicação Java Spring que fornece os serviços do sistema. Esses serviços são consumidos por uma interface amigável ao usuário, facilitando a organização financeira de seu negócio.
+
+## Arquitetura da aplicação
+![image](https://github.com/JonasFortes12/MEICash-server/assets/43821439/5fc2e482-277c-4de5-a3d5-8824f541cbc1)
+
