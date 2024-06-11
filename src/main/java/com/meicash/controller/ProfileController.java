@@ -5,6 +5,7 @@ import com.meicash.domain.category.RequestCategoryDTO;
 import com.meicash.domain.category.ResponseCategoryDTO;
 import com.meicash.domain.transaction.RequestTransactionDTO;
 import com.meicash.domain.transaction.ResponseTransactionDTO;
+import com.meicash.domain.user.ResponseUserDTO;
 import com.meicash.service.CategoryService;
 import com.meicash.service.ProfileService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -88,5 +89,15 @@ public class ProfileController {
     public List<ResponseCategoryDTO> getUserCategories() {
         return profileService.getUserCategories();
     }
+
+    @Operation(summary = "O usuário recupera as informações do seu perfil", description = "Recupera o perfil do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Perfil do usuário recuperado com sucesso"),
+    })
+    @GetMapping("/me")
+    public ResponseEntity<ResponseUserDTO> getUserProfile() {
+        return ResponseEntity.ok(profileService.getUserProfile());
+    }
+
 
 }
