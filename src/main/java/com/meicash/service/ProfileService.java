@@ -8,6 +8,8 @@ import com.meicash.domain.transaction.RequestTransactionDTO;
 import com.meicash.domain.transaction.ResponseTransactionDTO;
 import com.meicash.domain.transaction.Transaction;
 import com.meicash.domain.transaction.TransactionRepository;
+import com.meicash.domain.user.ResponseUserDTO;
+import com.meicash.domain.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +51,17 @@ public class ProfileService {
         );
     }
 
+    private ResponseUserDTO userToResponseUserDTO(User user) {
+        return new ResponseUserDTO(
+                user.getId(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getCompanyName()
+        );
+    }
+
     public ResponseTransactionDTO userCreateTransaction(RequestTransactionDTO requestTransactionDTO, Category category) {
         Transaction newTransaction = new Transaction(requestTransactionDTO, category);
 
@@ -79,5 +92,8 @@ public class ProfileService {
                 .collect(Collectors.toList());
     }
 
+    public ResponseUserDTO getUserProfile() {
+        return userToResponseUserDTO(authorizationService.getAuthenticatedUser());
+    }
 
 }
