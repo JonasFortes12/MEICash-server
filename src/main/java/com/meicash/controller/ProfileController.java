@@ -80,4 +80,13 @@ public class ProfileController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newCategory);
     }
 
+    @Operation(summary = "O usuário recupera todas as suas categorias", description = "Recupera todas as categorias do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Categorias do usuário recuperadas com sucesso"),
+    })
+    @GetMapping("/categories")
+    public List<ResponseCategoryDTO> getUserCategories() {
+        return profileService.getUserCategories();
+    }
+
 }

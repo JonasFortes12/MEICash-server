@@ -72,5 +72,12 @@ public class ProfileService {
         return categoryToResponseCategoryDTO(categoryRepository.save(newCategory));
     }
 
+    public List<ResponseCategoryDTO> getUserCategories() {
+        return categoryRepository.findAllByUser(authorizationService.getAuthenticatedUser())
+                .stream()
+                .map(this::categoryToResponseCategoryDTO)
+                .collect(Collectors.toList());
+    }
+
 
 }
