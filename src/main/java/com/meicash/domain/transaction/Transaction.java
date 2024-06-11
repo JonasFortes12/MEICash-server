@@ -20,6 +20,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    private  String title;
     private LocalDateTime timestamp;
     @Enumerated(EnumType.STRING)
     private TransactionType type;
@@ -37,6 +38,7 @@ public class Transaction {
 
 
     public Transaction(RequestTransactionDTO requestTransactionDTO, Category category) {
+        this.title = requestTransactionDTO.title();
         this.timestamp = requestTransactionDTO.timestamp();
         this.type = requestTransactionDTO.type();
         this.category = category;

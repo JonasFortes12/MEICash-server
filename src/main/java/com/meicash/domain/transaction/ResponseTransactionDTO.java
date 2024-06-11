@@ -3,8 +3,8 @@ package com.meicash.domain.transaction;
 import java.time.LocalDateTime;
 
 public record ResponseTransactionDTO(
-
     String id,
+    String title,
     LocalDateTime timestamp,
     TransactionType type,
     String categoryName,
@@ -15,6 +15,7 @@ public record ResponseTransactionDTO(
     public static ResponseTransactionDTO fromTransaction(final Transaction transaction) {
         return new ResponseTransactionDTO(
             transaction.getId(),
+            transaction.getTitle(),
             transaction.getTimestamp(),
             transaction.getType(),
             transaction.getCategory().getName(),

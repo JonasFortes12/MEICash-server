@@ -1,5 +1,6 @@
 CREATE TABLE transactions (
                               id VARCHAR PRIMARY KEY,
+                              title VARCHAR NOT NULL,
                               timestamp TIMESTAMP NOT NULL,
                               type VARCHAR NOT NULL,
                               value DOUBLE PRECISION NOT NULL,
