@@ -99,6 +99,15 @@ public class ProfileService {
         return categoryToResponseCategoryDTO(categoryRepository.save(category));
     }
 
+    public boolean deleteUserCategory(Category categoryToDelete) {
+        try {
+            categoryRepository.delete(categoryToDelete);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public ResponseUserDTO getUserProfile() {
         return userToResponseUserDTO(authorizationService.getAuthenticatedUser());
     }

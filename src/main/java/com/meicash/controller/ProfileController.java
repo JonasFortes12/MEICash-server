@@ -96,6 +96,7 @@ public class ProfileController {
             @ApiResponse(responseCode = "200", description = "Categoria do usuário atualizada com sucesso"),
             @ApiResponse(responseCode = "400", description = "Categoria não encontrada"),
     })
+    @PutMapping("/categories/{categoryId}")
     public ResponseEntity<ResponseCategoryDTO> updateUserCategory(
             @PathVariable final String categoryId,
             @Valid @RequestBody final RequestCategoryDTO requestCategoryDTO
@@ -109,6 +110,27 @@ public class ProfileController {
         ResponseCategoryDTO updatedCategory = profileService.updateUserCategory(categoryToUpdate.get(), requestCategoryDTO);
 
         return ResponseEntity.ok(updatedCategory);
+    }
+
+
+    @Operation(summary = "O usuário deleta uma categoria", description = "Deleta uma categoria do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Categoria do usuário deletada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Categoria não encontrada")
+    })
+    @DeleteMapping("/categories/{categoryId}")
+    public ResponseEntity<Void> deleteUserCategory(@PathVariable final String categoryId) {
+        Optional<Category> categoryToDelete = categoryService.getEntityCategoryById(categoryId);
+
+        if(categoryToDelete.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        if (!profileService.deleteUserCategory(categoryToDelete.get())) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
     }
 
 
