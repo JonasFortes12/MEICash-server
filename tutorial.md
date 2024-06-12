@@ -6,7 +6,7 @@
     ```bash
     git clone https://github.com/JonasFortes12/MEICash-server.git
     ```
-- Abra o projeto usando o IntelliJ IDEA.
+- Abra o projeto usando o [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/?section=windows).
 - Na raíz do projeto, crie um arquivo chamado `.env` e adicione as variáveis de ambiente disponíveis no arquivo `.env.example`.
     ```dotenv
     MEICASH_POSTGRES_HOST=localhost
