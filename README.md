@@ -14,15 +14,30 @@ Com este planejamento, nossa equipe percebeu que uma das funcionalidades mais ú
 
 >[!NOTE]
 >
->Esta é o repositório da API Java Spring que fornece os serviços do sistema. Esses serviços são consumidos por uma interface amigável ao usuário: [Front-end](...) , facilitando a organização financeira de seu negócio.
+>Esta é o repositório da API Java Spring que fornece os serviços do sistema. Esses serviços são consumidos por uma interface amigável ao usuário, facilitando a organização financeira de seu negócio. Para mais detalhes acesse o repositório do Front-end da aplicação: [Front-end](https://github.com/JonasFortes12/MEICash-front-end).
 
 
 ## Arquitetura da aplicação
 ![image](https://github.com/JonasFortes12/MEICash-server/assets/43821439/5fc2e482-277c-4de5-a3d5-8824f541cbc1)
 
 ## Fluxo de Trabalho (A fazer)
- - Descrever pipeline de CI e CD
- - COlocar prints das execuções do github action
+O ambiente de desenvolvimento foi configurado com um banco de dados PostgreSQL
+instanciado usando o Docker e Docker-Compose.
+
+Para criar uma documentação abrangente do projeto, cada nova funcionalidade a ser implementada 
+foi descrita no formato de BDD (Behavior Driven Development) Features em Issues do GitHub.
+Para consulatar a lista de Issues concluídas, veja: [Issues](https://github.com/JonasFortes12/MEICash-server/issues?q=is%3Aissue+is%3Aclosed).
+E para visualizar a implementação de cada Feature, veja a [lista de PR´s](https://github.com/JonasFortes12/MEICash-server/pulls?q=is%3Apr+is%3Aclosed). 
+
+
+
+Foi implementada uma pipeline de integração e entrega contínua (CI/CD):
+- Para cada Pull Request aberto, um script no GitHub Actions faz a verificação de Build da aplicação.
+- E também, o merge para branch main só é permitido após o Build e a aprovação de um revisor.
+
+- Após o merge, o GitHub Actions faz o deploy da aplicação em uma máquina virtual na Azure.
+
+  <img src="./assets/img_1.png" style="width: 50%;">
 
 ## Uso (A fazer)
  - adiocionar aqui aquele tutorial de configuração do ambiente de desenvolvimento local
