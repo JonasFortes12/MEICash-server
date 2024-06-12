@@ -20,13 +20,21 @@ Com este planejamento, nossa equipe percebeu que uma das funcionalidades mais ú
 ## Arquitetura da aplicação
 ![image](https://github.com/JonasFortes12/MEICash-server/assets/43821439/5fc2e482-277c-4de5-a3d5-8824f541cbc1)
 
+## Fluxo de Trabalho (A fazer)
+ - Descrever pipeline de CI e CD
+ - COlocar prints das execuções do github action
+
+## Uso (A fazer)
+ - adiocionar aqui aquele tutorial de configuração do ambiente de desenvolvimento local
+
 ## Tecnologias Usadas
  - Spring Boot
  - PostgreSQL
  - Json Web Token
  - Swagger OpenAPI
 
-## Contribuições são bem vindas!
+## Contribuições
+Contribuições são bem vindas!
 
 ## Equipe
 | <img src="https://avatars.githubusercontent.com/u/112669877?v=4"><br><strong>Isac Andrade</strong> | <img src="https://avatars.githubusercontent.com/u/43821439?v=4"><br><strong>Jonas Fortes</strong> | <img src="https://avatars.githubusercontent.com/u/65193369?v=4"><br><strong>Luan Moraes</strong> | <img src="https://avatars.githubusercontent.com/u/107064977?v=4"><br><strong>Geovana Souza</strong> | <img src="https://avatars.githubusercontent.com/u/39842850?v=4"><br><strong>stefaneadna</strong> |
