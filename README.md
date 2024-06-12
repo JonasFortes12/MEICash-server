@@ -49,7 +49,7 @@ Foi implementada uma pipeline de integração e entrega contínua (CI/CD):
  - Swagger OpenAPI
 
 ## Contribuições
-Contribuições são bem vindas!
+Contribuições são bem vindas! 
 
 ## Equipe
 | <img src="https://avatars.githubusercontent.com/u/112669877?v=4"><br><strong>Isac Andrade</strong> | <img src="https://avatars.githubusercontent.com/u/43821439?v=4"><br><strong>Jonas Fortes</strong> | <img src="https://avatars.githubusercontent.com/u/65193369?v=4"><br><strong>Luan Moraes</strong> | <img src="https://avatars.githubusercontent.com/u/107064977?v=4"><br><strong>Geovana Souza</strong> | <img src="https://avatars.githubusercontent.com/u/39842850?v=4"><br><strong>stefaneadna</strong> |
