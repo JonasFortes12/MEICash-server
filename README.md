@@ -34,15 +34,15 @@ E para visualizar a implementação de cada Feature, veja a [lista de PR´s](htt
 Foi implementada uma pipeline de integração e entrega contínua (CI/CD):
 - Para cada Pull Request aberto, um script no GitHub Actions faz a verificação de Build da aplicação.
 
-  <img src="./assets/gif-01.gif" style="width: 50%; margin: 30px auto 30px auto;">
+  <img src="./assets/gif-01.gif" style="width: 70%; margin: 30px auto 30px auto;">
   
 - E também, o merge para branch main só é permitido após o Build e a aprovação de um revisor.
 
-  <img src="./assets/img_2.png" style="width: 50%; margin: 30px auto 30px auto;">
+  <img src="./assets/img_2.png" style="width: 70%; margin: 30px auto 30px auto;">
   
 - Após o merge, o GitHub Actions faz o deploy da aplicação em uma máquina virtual na Azure.
 
-  <img src="./assets/img_1.png" style="width: 50%; margin: 30px auto 30px auto;">
+  <img src="./assets/img_1.png" style="width: 70%; margin: 30px auto 30px auto;">
 
 ## Uso
  -  Para configurar o ambiente de desenvolvimento e executar o projeto localmente, acesse o [Tutorial](./tutorial.md).
