@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name = "Categorias", description = "Operações relacionadas a categorias das transações")
+@Tag(name = "Categorias", description = "Operações relacionadas aos tipos de categorias das transações")
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
@@ -27,7 +27,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @Operation(summary = "Cria uma nova categoria", description = "Cria uma nova categoria no sistema")
+    @Operation(summary = "Cria uma nova categoria", description = "Cria um novo tipo de categoria no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Categoria criada"),
             @ApiResponse(responseCode = "403", description = "Erro na requisição")
@@ -38,7 +38,7 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseCategoryDTO);
     }
 
-    @Operation(summary = "Lista todas as categorias", description = "Retorna todas as categorias cadastradas no sistema")
+    @Operation(summary = "Lista todas as categorias", description = "Devolve todos os tipos de categorias cadastradas no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categorias listadas"),
     })
@@ -48,7 +48,7 @@ public class CategoryController {
         return ResponseEntity.ok(categories);
     }
 
-    @Operation(summary = "Busca uma categoria por ID", description = "Retorna uma categoria específica")
+    @Operation(summary = "Busca uma categoria por ID", description = "Devolve uma categoria específica cadastrada no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categoria encontrada"),
             @ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
@@ -60,7 +60,7 @@ public class CategoryController {
         return category.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Atualiza uma categoria", description = "Atualiza uma categoria existente")
+    @Operation(summary = "Atualiza uma categoria", description = "Atualiza uma categoria existente cadastrada no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categoria atualizada"),
             @ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
@@ -77,7 +77,7 @@ public class CategoryController {
         }
     }
 
-    @Operation(summary = "Deleta uma categoria", description = "Deleta uma categoria existente")
+    @Operation(summary = "Deleta uma categoria", description = "Deleta uma categoria existente no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Categoria deletada"),
             @ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
