@@ -58,6 +58,7 @@ public class TransactionService {
     public Optional<ResponseTransactionDTO> updateTransaction(String transactionId, RequestTransactionDTO requestTransactionDTO) {
         return transactionRepository.findById(transactionId).map(
                 transaction -> {
+                    transaction.setTitle(requestTransactionDTO.title());
                     transaction.setTimestamp(requestTransactionDTO.timestamp());
                     transaction.setType(requestTransactionDTO.type());
                     transaction.setValue(requestTransactionDTO.value());

@@ -67,6 +67,37 @@ public class ProfileController {
         return profileService.getUserTransactions();
     }
 
+    @Operation(summary = "O usuário atualiza uma transação", description = "Atualiza uma transação do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Transação do usuário atualizada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Transação não encontrada")
+    })
+    @PutMapping("/transactions/{transactionId}")
+    public ResponseEntity<ResponseTransactionDTO> updateUserTransaction(
+            @PathVariable final String transactionId,
+            @Valid @RequestBody final RequestTransactionDTO requestTransactionDTO
+    ) {
+        Optional<ResponseTransactionDTO> updatedTransaction = profileService.updateUserTransaction(transactionId, requestTransactionDTO);
+        if (updatedTransaction.isPresent()) {
+            return ResponseEntity.ok(updatedTransaction.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Operation(summary = "O usuário deleta uma transação", description = "Deleta uma transação do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Transação do usuário deletada com sucesso")
+    })
+    @DeleteMapping("/transactions/{transactionId}")
+    public ResponseEntity<Void> deleteUserTransaction(@PathVariable final String transactionId) {
+        if (!profileService.deleteUserTransaction(transactionId)) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
+
     @Operation(summary = "O usuário registra uma nova categoria", description = "Cria uma nova categoria no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Usuário criou categoria com sucesso"),
@@ -89,6 +120,50 @@ public class ProfileController {
     public List<ResponseCategoryDTO> getUserCategories() {
         return profileService.getUserCategories();
     }
+
+
+    @Operation(summary = "O usuário atualiza uma categoria", description = "Atualiza uma categoria do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Categoria do usuário atualizada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Categoria não encontrada"),
+    })
+    @PutMapping("/categories/{categoryId}")
+    public ResponseEntity<ResponseCategoryDTO> updateUserCategory(
+            @PathVariable final String categoryId,
+            @Valid @RequestBody final RequestCategoryDTO requestCategoryDTO
+    ) {
+        Optional<Category> categoryToUpdate = categoryService.getEntityCategoryById(categoryId);
+
+        if(categoryToUpdate.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        ResponseCategoryDTO updatedCategory = profileService.updateUserCategory(categoryToUpdate.get(), requestCategoryDTO);
+
+        return ResponseEntity.ok(updatedCategory);
+    }
+
+
+    @Operation(summary = "O usuário deleta uma categoria", description = "Deleta uma categoria do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Categoria do usuário deletada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Categoria não encontrada")
+    })
+    @DeleteMapping("/categories/{categoryId}")
+    public ResponseEntity<Void> deleteUserCategory(@PathVariable final String categoryId) {
+        Optional<Category> categoryToDelete = categoryService.getEntityCategoryById(categoryId);
+
+        if(categoryToDelete.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        if (!profileService.deleteUserCategory(categoryToDelete.get())) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
 
     @Operation(summary = "O usuário recupera as informações do seu perfil", description = "Recupera o perfil do usuário no sistema")
     @ApiResponses(value = {

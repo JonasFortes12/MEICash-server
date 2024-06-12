@@ -26,7 +26,7 @@ public class UserController {
         this.userService = receivedUserService;
     }
 
-    @Operation(summary = "Lista todos os usuários", description = "Retorna uma lista com todos os usuários cadastrados no sistema")
+    @Operation(summary = "Lista todos os usuários", description = "Devolve uma lista contendo todos os usuários registrados no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso"),
             @ApiResponse(responseCode = "403", description = "Usuário não autorizado")
@@ -36,7 +36,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @Operation(summary = "Busca um usuário pelo ID", description = "Retorna um usuário específico pelo ID")
+    @Operation(summary = "Busca um usuário pelo ID", description = "Devolve um usuário específico com base no ID fornecido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário encontrado"),
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-    @Operation(summary = "Atualiza um usuário", description = "Atualiza um usuário existente no sistema")
+    @Operation(summary = "Atualiza um usuário", description = "Atualiza as informações de um usuário existente no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
@@ -78,7 +78,7 @@ public class UserController {
         return ResponseEntity.ok(updatedUser.get());
     }
 
-    @Operation(summary = "Deleta um usuário", description = "Deleta um usuário existente no sistema")
+    @Operation(summary = "Deleta um usuário", description = "Remove um usuário existente do sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Usuário deletado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),

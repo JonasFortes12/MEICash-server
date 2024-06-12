@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name = "Transações", description = "Operações relacionadas a transações")
+@Tag(name = "Transações", description = "Operações relacionadas a transações no sistema")
 @RestController
 @RequestMapping("/transactions")
 public class TransactionController {
@@ -53,7 +53,7 @@ public class TransactionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newTransaction);
     }
 
-    @Operation(summary = "Lista todas as transações", description = "Retorna todas as transações cadastradas no sistema")
+    @Operation(summary = "Lista todas as transações", description = "Devolve todas as transações cadastradas no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Transações listadas"),
             @ApiResponse(responseCode = "403", description = "Erro na requisição ou Usuário não autorizado"),
@@ -63,7 +63,7 @@ public class TransactionController {
         return transactionService.getAllTransactions();
     }
 
-    @Operation(summary = "Busca uma transação por ID", description = "Retorna uma transação específica")
+    @Operation(summary = "Busca uma transação por ID", description = "Devolve uma transação específica cadastrada no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Transação encontrada"),
             @ApiResponse(responseCode = "404", description = "Transação não encontrada"),
@@ -75,7 +75,7 @@ public class TransactionController {
         return transaction.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Atualiza uma transação", description = "Atualiza uma transação existente")
+    @Operation(summary = "Atualiza uma transação", description = "Atualiza uma transação existente cadastrada no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Transação atualizada"),
             @ApiResponse(responseCode = "404 ", description = "Transação não encontrada"),
@@ -91,7 +91,7 @@ public class TransactionController {
         }
     }
 
-    @Operation(summary = "Deleta uma transação", description = "Deleta uma transação existente")
+    @Operation(summary = "Deleta uma transação", description = "Deleta uma transação existente no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Transação deletada"),
             @ApiResponse(responseCode = "404 ", description = "Transação não encontrada"),
