@@ -85,6 +85,18 @@ public class ProfileController {
         }
     }
 
+    @Operation(summary = "O usuário deleta uma transação", description = "Deleta uma transação do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Transação do usuário deletada com sucesso")
+    })
+    @DeleteMapping("/transactions/{transactionId}")
+    public ResponseEntity<Void> deleteUserTransaction(@PathVariable final String transactionId) {
+        if (!profileService.deleteUserTransaction(transactionId)) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
 
     @Operation(summary = "O usuário registra uma nova categoria", description = "Cria uma nova categoria no sistema")
     @ApiResponses(value = {

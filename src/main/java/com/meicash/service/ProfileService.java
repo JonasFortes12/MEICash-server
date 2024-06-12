@@ -92,6 +92,15 @@ public class ProfileService {
         );
     }
 
+    public  boolean deleteUserTransaction(String transactionId) {
+        return transactionRepository.findById(transactionId)
+                .map(transaction -> {
+                    transactionRepository.delete(transaction);
+                    return true;
+                })
+                .orElse(false);
+    }
+
     public ResponseCategoryDTO userCreateCategory(RequestCategoryDTO requestCategoryDTO) {
         Category newCategory = new Category(requestCategoryDTO);
 
