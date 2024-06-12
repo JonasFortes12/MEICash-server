@@ -93,6 +93,12 @@ public class ProfileService {
                 .collect(Collectors.toList());
     }
 
+    public ResponseCategoryDTO updateUserCategory(Category category, RequestCategoryDTO requestCategoryDTO) {
+        category.setName(requestCategoryDTO.name());
+        category.setColor(requestCategoryDTO.color());
+        return categoryToResponseCategoryDTO(categoryRepository.save(category));
+    }
+
     public ResponseUserDTO getUserProfile() {
         return userToResponseUserDTO(authorizationService.getAuthenticatedUser());
     }

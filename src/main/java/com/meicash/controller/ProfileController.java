@@ -90,6 +90,28 @@ public class ProfileController {
         return profileService.getUserCategories();
     }
 
+
+    @Operation(summary = "O usuário atualiza uma categoria", description = "Atualiza uma categoria do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Categoria do usuário atualizada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Categoria não encontrada"),
+    })
+    public ResponseEntity<ResponseCategoryDTO> updateUserCategory(
+            @PathVariable final String categoryId,
+            @Valid @RequestBody final RequestCategoryDTO requestCategoryDTO
+    ) {
+        Optional<Category> categoryToUpdate = categoryService.getEntityCategoryById(categoryId);
+
+        if(categoryToUpdate.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        ResponseCategoryDTO updatedCategory = profileService.updateUserCategory(categoryToUpdate.get(), requestCategoryDTO);
+
+        return ResponseEntity.ok(updatedCategory);
+    }
+
+
     @Operation(summary = "O usuário recupera as informações do seu perfil", description = "Recupera o perfil do usuário no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Perfil do usuário recuperado com sucesso"),
