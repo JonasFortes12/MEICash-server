@@ -13,6 +13,7 @@ import com.meicash.domain.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,6 +77,19 @@ public class ProfileService {
                 .stream()
                 .map(this::transactionToResponseTransactionDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<ResponseTransactionDTO> updateUserTransaction(String transactionId, RequestTransactionDTO requestTransactionDTO) {
+        return transactionRepository.findById(transactionId).map(
+                transaction -> {
+                    transaction.setTitle(requestTransactionDTO.title());
+                    transaction.setTimestamp(requestTransactionDTO.timestamp());
+                    transaction.setType(requestTransactionDTO.type());
+                    transaction.setValue(requestTransactionDTO.value());
+                    transaction.setDescription(requestTransactionDTO.description());
+                    return transactionToResponseTransactionDTO(transactionRepository.save(transaction));
+                }
+        );
     }
 
     public ResponseCategoryDTO userCreateCategory(RequestCategoryDTO requestCategoryDTO) {

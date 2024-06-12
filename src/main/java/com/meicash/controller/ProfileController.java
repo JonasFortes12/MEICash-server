@@ -67,6 +67,25 @@ public class ProfileController {
         return profileService.getUserTransactions();
     }
 
+    @Operation(summary = "O usuário atualiza uma transação", description = "Atualiza uma transação do usuário no sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Transação do usuário atualizada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Transação não encontrada")
+    })
+    @PutMapping("/transactions/{transactionId}")
+    public ResponseEntity<ResponseTransactionDTO> updateUserTransaction(
+            @PathVariable final String transactionId,
+            @Valid @RequestBody final RequestTransactionDTO requestTransactionDTO
+    ) {
+        Optional<ResponseTransactionDTO> updatedTransaction = profileService.updateUserTransaction(transactionId, requestTransactionDTO);
+        if (updatedTransaction.isPresent()) {
+            return ResponseEntity.ok(updatedTransaction.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @Operation(summary = "O usuário registra uma nova categoria", description = "Cria uma nova categoria no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Usuário criou categoria com sucesso"),
