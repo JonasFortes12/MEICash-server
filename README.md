@@ -31,7 +31,7 @@ instanciado usando o Docker e Docker-Compose.
 
 Para criar uma documentação abrangente do projeto, cada nova funcionalidade a ser implementada 
 foi descrita no formato de BDD (Behavior Driven Development) Features em Issues do GitHub.
-Para consulatar a lista de Issues concluídas, veja: [Issues](https://github.com/JonasFortes12/MEICash-server/issues?q=is%3Aissue+is%3Aclosed).
+Para consultar a lista de Issues concluídas, veja: [Issues](https://github.com/JonasFortes12/MEICash-server/issues?q=is%3Aissue+is%3Aclosed).
 E para visualizar a implementação de cada Feature, veja a [lista de PR´s](https://github.com/JonasFortes12/MEICash-server/pulls?q=is%3Apr+is%3Aclosed). 
 
 
