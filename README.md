@@ -19,11 +19,11 @@ Com este planejamento, nossa equipe percebeu que uma das funcionalidades mais ú
 
 
 ## Documentação
-➡️Acesse a documentação da API: <a href="http://www.meicash.online:8080/swagger-ui/index.html" target="_blank">http://www.meicash.online:8080/swagger-ui/index.html</a>
+ <p>➡️Acesse a documentação da API: <a href="http://www.meicash.online:8080/swagger-ui/index.html" target="_blank">http://www.meicash.online:8080/swagger-ui/index.html</a></p>
 
 
 ## Arquitetura da aplicação
-![image](https://github.com/JonasFortes12/MEICash-server/assets/43821439/5fc2e482-277c-4de5-a3d5-8824f541cbc1)
+![image](https://github.com/JonasFortes12/MEICash-server/assets/43821439/5fc2e482-277c-4de5-a3d5-8824f541cbc1)/
 
 ## Fluxo de Trabalho
 O ambiente de desenvolvimento foi configurado com um banco de dados PostgreSQL
