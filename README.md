@@ -14,9 +14,13 @@ Com este planejamento, nossa equipe percebeu que uma das funcionalidades mais ú
 
 >[!NOTE]
 >
->Esta é o repositório da API Java Spring que fornece os serviços do sistema. Esses serviços são consumidos por uma interface amigável ao usuário, facilitando a organização financeira de seu negócio. Para mais detalhes acesse o repositório do Front-end da aplicação: [Front-end](https://github.com/JonasFortes12/MEICash-front-end).
+>Este é o repositório da API Java Spring que fornece os serviços do sistema. Esses serviços são consumidos por uma interface amigável ao usuário, facilitando a organização financeira de seu negócio. Para mais detalhes acesse o repositório do Front-end da aplicação: [Front-end](https://github.com/JonasFortes12/MEICash-front-end).
 
-### ➡️Acesse a documentação da API: http://www.meicash.online:8080/swagger-ui/index.html
+
+
+## Documentação
+### ➡️Acesse a documentação da API: <a href="http://www.meicash.online:8080/swagger-ui/index.html" target="_blank">http://www.meicash.online:8080/swagger-ui/index.html</a>
+
 
 ## Arquitetura da aplicação
 ![image](https://github.com/JonasFortes12/MEICash-server/assets/43821439/5fc2e482-277c-4de5-a3d5-8824f541cbc1)
