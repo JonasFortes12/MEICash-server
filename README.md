@@ -19,7 +19,7 @@ Com este planejamento, nossa equipe percebeu que uma das funcionalidades mais ú
 
 
 ## Documentação
-### ➡️Acesse a documentação da API: <a href="http://www.meicash.online:8080/swagger-ui/index.html" target="_blank">http://www.meicash.online:8080/swagger-ui/index.html</a>
+➡️Acesse a documentação da API: <a href="http://www.meicash.online:8080/swagger-ui/index.html" target="_blank">http://www.meicash.online:8080/swagger-ui/index.html</a>
 
 
 ## Arquitetura da aplicação
