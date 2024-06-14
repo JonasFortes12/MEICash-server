@@ -1,3 +1,5 @@
+![logo stone](https://github.com/JonasFortes12/MEICash-server/assets/43821439/1a30c2d4-a931-4567-8c95-bfa153f4cdc7)
+
 # MEICash-server
 
 
