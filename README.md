@@ -1,4 +1,4 @@
-![logo stone](https://github.com/JonasFortes12/MEICash-server/assets/43821439/1a30c2d4-a931-4567-8c95-bfa153f4cdc7)
+<img src="./assets/logo-stone.webp" alt="Image" height="150" style="display: block; margin: 40px auto;">
 
 # MEICash-server
 
